@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Assist"
+  short_description: "Safe Git, commit, and PR help"
+  default_prompt: "Use $git-assist to show mode options and help me safely prepare the next Git or GitHub step."
