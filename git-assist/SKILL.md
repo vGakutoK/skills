@@ -1,6 +1,6 @@
 ---
 name: git-assist
-description: Safe Git and GitHub workflow assistance for app development and maintenance. Use when the user invokes /git-assist or asks for Git work preparation, pre-work checks, commit-before review, commit message creation, commit message suggestions, PR drafting, PR creation support, or safe handling of local changes across solo or team development.
+description: Safe Git and GitHub workflow assistance for app development and maintenance. Use when the user invokes /git-assist or asks for Git work preparation, pre-work checks, commit-before review, commit message creation, commit message suggestions, PR text drafting, PR title/body drafting, review point organization, or safe handling of local changes across solo or team development.
 ---
 
 # Git Assist
@@ -14,9 +14,9 @@ When the user invokes `/git-assist` without specifying a mode, first show this m
 1. 作業前チェック
 2. コミット前レビュー
 3. コミットメッセージ作成
-4. PR作成支援
+4. PR文章作成支援
 
-If the user explicitly asks for a mode, skip the menu and start that mode directly. Treat requests such as "作業前チェック", "コミット前レビューして", "コミットメッセージ作成", and "PR作成支援" as explicit mode selection.
+If the user explicitly asks for a mode, skip the menu and start that mode directly. Treat requests such as "作業前チェック", "コミット前レビューして", "コミットメッセージ作成", and "PR文章作成支援" as explicit mode selection.
 
 Ask which mode to use only when the request cannot be reasonably classified.
 
@@ -25,7 +25,8 @@ Ask which mode to use only when the request cannot be reasonably classified.
 - Prioritize safety checks.
 - Keep the scope narrow and practical.
 - Do not run destructive or history-changing commands automatically, including `git reset --hard`, `git push --force`, `git rebase`, and `git stash drop`.
-- Run `git commit`, `git push`, PR creation commands, `git rebase`, or similar state-changing operations only when the user explicitly permits that specific action.
+- Run `git commit`, `git push`, `gh pr create`, GitHub state-changing commands, `git rebase`, or similar state-changing operations only when the user explicitly permits that specific action.
+- Treat PR-related work as text drafting and review organization by default; do not perform GitHub state-changing operations unless explicitly requested.
 - Prefer summarizing information useful for review and change confirmation over listing implementation details exhaustively.
 - Keep output concise and practical.
 - Suggest test perspectives or test results only when the user explicitly asks for them.
@@ -150,9 +151,9 @@ Commit message output rules:
 
 Do not run `git commit` unless the user explicitly permits it.
 
-## PR作成支援
+## PR文章作成支援
 
-Focus on organizing the whole PR for review.
+Focus on drafting and organizing PR text for review. This mode is for PR titles, PR bodies, review points, and optional review methods; it is not for pushing branches or creating PRs on GitHub.
 
 Run:
 
@@ -210,4 +211,5 @@ Review method rules:
 
 Use these PR body headings in this order when relevant: `## このPull Requestの趣旨と目的`, `## 実装した内容・変更箇所`, `## レビューしてほしい箇所`, and optionally `## レビュー方法`. The review method heading is not required; add it only when useful.
 
-Do not run `git push` or PR creation commands unless the user explicitly permits them.
+Do not run `git push`, `gh pr create`, or GitHub state-changing commands unless the user explicitly permits them.
+When useful, present command suggestions only; do not execute `git push`, `gh pr create`, or other GitHub state-changing commands by default.
