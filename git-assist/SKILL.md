@@ -75,6 +75,7 @@ Focus on the current Git state and diff before commit.
 Run:
 
 ```bash
+git branch --show-current
 git status --short
 git diff --stat
 git diff --name-only
@@ -94,12 +95,15 @@ git diff
 
 Then report:
 
+- Current branch.
+- Whether the branch appears protected or shared, especially `main`, `master`, or `develop`; warn if the user appears to be about to commit on such a branch.
 - Changed and untracked files.
 - Change volume summary.
 - Concise summary of the change content.
 - Possible accidental changes, unrelated changes, or unnecessarily large changes.
 - Whether the work should be split into multiple commits.
-- Lightweight Conventional Commits-style commit message suggestions.
+- One or more lightweight Conventional Commits-style commit message suggestions.
+- Whether a project-specific commit style or recent commit history should influence the message format, language, or granularity.
 
 Do not run `git commit` unless the user explicitly permits it.
 
